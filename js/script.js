@@ -5,16 +5,16 @@ const playerScoreCount = document.querySelector('#player-score');
 const computerScoreCount = document.querySelector('#computer-score');
 const result = document.querySelector('.result');
 
-
-const buttons = document.querySelectorAll('.btn');
+const btnContainer = document.querySelector('.btn-container');
+const buttons = btnContainer.querySelectorAll('.btn');
 buttons.forEach(button => {
-    button.addEventListener('click', function game() {
+    button.addEventListener('click', () => {
         playerSelection = button.id;
         let computerSelection = getComputerChoice();
-        // console.log(playRound(playerSelection, computerSelection));
-        result.textContent = playRound(playerSelection, computerSelection);
-        
 
+        result.textContent = playRound(playerSelection, computerSelection);
+        game();
+        
         playerScoreCount.textContent = playerScore;
         computerScoreCount.textContent = computerScore;
     });
@@ -83,11 +83,13 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
+
     if (playerScore != 5 && computerScore != 5){
         return;
     } else if (playerScore == 5) {
-        //print you won to the page
+        console.log("you won 5 games");
+        return btnContainer.textContent = "YOU WON 5 GAMES FIRST, YAY!";
     } else if (computerScore == 5) {
-        //print you lost to the page
+        return btnContainer.textContent = "YOU LOSE, COMPUTER GOT TO 5 FIRST";
     }
 }
